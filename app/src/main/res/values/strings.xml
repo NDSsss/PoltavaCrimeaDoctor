@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DoctorScanner</string>
+
+    <string name="menu_scan_cabinet">Сменить кабинет</string>
+
+    <string name="doctor_unknown">Отсканируйте персональный QR</string>
+    <string name="error_cabinet_data_parsing">Ошибка сканирования кабинета</string>
+</resources>

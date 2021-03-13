@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/base_vertical_margin">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/base_margin"
+        android:layout_marginVertical="@dimen/base_vertical_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="11:00" />
+
+    <TextView
+        android:id="@+id/clientName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/base_margin"
+        android:layout_marginVertical="@dimen/base_vertical_margin"
+        android:textAppearance="@style/BaseTextAppearance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/time"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Иванов Иван Иванович" />
+
+    <TextView
+        android:id="@+id/procedure"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/base_vertical_margin"
+        app:layout_constraintEnd_toEndOf="@id/clientName"
+        app:layout_constraintStart_toStartOf="@id/clientName"
+        app:layout_constraintTop_toBottomOf="@id/clientName"
+        tools:text="Массаж шеи №2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

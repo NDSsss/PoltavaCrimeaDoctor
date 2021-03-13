@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cabinet_unknown">Отсканируйте qr кабинета</string>
+    <string name="cabinet_scan_action">Отсканировать</string>
+    <string name="error_cabinet_scan">Ошибка сканирования кабинета</string>
+
+    <string name="set_visited">Посетил</string>
+    <string name="set_missed">Пропуск</string>
+</resources>

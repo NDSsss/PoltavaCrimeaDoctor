@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="schedule_visited">#A5D6A7</color>
+    <color name="schedule_missed">#e57373</color>
+</resources>
