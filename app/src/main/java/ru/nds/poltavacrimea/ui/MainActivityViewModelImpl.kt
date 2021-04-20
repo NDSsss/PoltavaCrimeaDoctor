@@ -10,9 +10,10 @@ import ru.nds.models.DoctorData
 import ru.nds.planfix.coordinator.SetUpCoordinator
 import ru.nds.planfix.notifications.NotificationsManager
 import ru.nds.planfix.notifications.NotificationsManagerSetUp
-import ru.nds.planfix.resultcodes.CODE_SCANNED_RESULT
 import ru.nds.planfix.scan.appResources.AppResources
 import ru.nds.poltavacrimea.R
+import ru.nds.shared.scanner.navigation.dto.ScannerDto
+import ru.nds.shared.scanner.navigation.dto.ScannerMockDto
 
 class MainActivityViewModelImpl(
     private val setUpCoordinator: SetUpCoordinator,
@@ -22,6 +23,10 @@ class MainActivityViewModelImpl(
     private val gson: Gson,
     private val appResources: AppResources,
 ) : ViewModel(), MainActivityViewModel {
+
+    companion object {
+        private const val SCAN_CABINET_CODE = 123
+    }
 
     private val requests = CompositeDisposable()
 
@@ -34,10 +39,22 @@ class MainActivityViewModelImpl(
 
     override fun onScanCabinetClick() {
         requests.add(
-            mainCoordinator.addResultListener<String>(CODE_SCANNED_RESULT)
+            mainCoordinator.addResultListener<String>(SCAN_CABINET_CODE)
                 .subscribe(::onCabinetScanned)
         )
-        mainCoordinator.openScanner()
+        mainCoordinator.openScanner(
+            ScannerDto(
+                requestCode = SCAN_CABINET_CODE,
+                description = null,
+                mock = ScannerMockDto(
+                    mockResult = gson.toJson(
+                        DoctorData.DoctorSelected(
+                            name = "Петров Иван"
+                        )
+                    )
+                )
+            )
+        )
     }
 
     private fun onCabinetScanned(data: String) {
@@ -47,7 +64,7 @@ class MainActivityViewModelImpl(
             null
         }
 
-        if(doctorData == null){
+        if (doctorData == null) {
             notificationsManager.showNotification(appResources.getString(R.string.doctor_unknown))
             return
         }

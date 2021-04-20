@@ -7,8 +7,9 @@ import ru.nds.planfix.base.BaseScreenState
 import ru.nds.planfix.base.BaseViewModelImpl
 import ru.nds.planfix.base.FullScreenMessageData
 import ru.nds.planfix.notifications.NotificationsManager
-import ru.nds.planfix.resultcodes.CODE_SCANNED_RESULT
 import ru.nds.planfix.scan.appResources.AppResources
+import ru.nds.shared.scanner.navigation.dto.ScannerDto
+import ru.nds.shared.scanner.navigation.dto.ScannerMockDto
 
 class CabinetInfoViewModelImpl(
     appResources: AppResources,
@@ -16,6 +17,12 @@ class CabinetInfoViewModelImpl(
     private val cabinetInfoCoordinator: CabinetInfoCoordinator,
     private val gson: Gson,
 ) : BaseViewModelImpl(appResources, notificationsManager), CabinetInfoViewModel {
+
+    companion object {
+        private const val SCAN_CABINET_CODE = 123
+        private const val SCAN_VISIT_CODE = 124
+    }
+
     override val cabinetInfo: MutableLiveData<CabinetData> = MutableLiveData()
 
     private val cabinetSchedulers: MutableList<CabinetScheduleItem> = generateMockCabinetSchedule()
@@ -32,10 +39,17 @@ class CabinetInfoViewModelImpl(
 
     private fun onScanCabinetClick() {
         disposables.add(
-            cabinetInfoCoordinator.addResultListener<String>(CODE_SCANNED_RESULT)
+            cabinetInfoCoordinator.addResultListener<String>(SCAN_CABINET_CODE)
                 .subscribe(::onCabinetScanned)
         )
-        cabinetInfoCoordinator.openScanner()
+        cabinetInfoCoordinator.openScanner(
+            ScannerDto(
+                requestCode = SCAN_CABINET_CODE, null,
+                mock = ScannerMockDto(
+                    mockResult = gson.toJson(CabinetData.CabinetSelected(name = "305 Массаж", null))
+                )
+            )
+        )
     }
 
     private fun onCabinetScanned(data: String) {
@@ -64,7 +78,7 @@ class CabinetInfoViewModelImpl(
 
     override fun onVisitedClick(scheduleItem: CabinetScheduleItem) {
         disposables.add(
-            cabinetInfoCoordinator.addResultListener<String>(CODE_SCANNED_RESULT)
+            cabinetInfoCoordinator.addResultListener<String>(SCAN_VISIT_CODE)
                 .subscribe { scannedName ->
                     val clientName = try {
                         gson.fromJson(scannedName, ClientData::class.java).name
@@ -87,7 +101,15 @@ class CabinetInfoViewModelImpl(
                     }
                 }
         )
-        cabinetInfoCoordinator.openScanner()
+        cabinetInfoCoordinator.openScanner(
+            ScannerDto(
+                requestCode = SCAN_VISIT_CODE,
+                description = null,
+                mock = ScannerMockDto(
+                    mockResult = gson.toJson(ClientData(name = "Кухта Дмитирй"))
+                )
+            )
+        )
     }
 
     override fun onMissedClick(scheduleItem: CabinetScheduleItem) {

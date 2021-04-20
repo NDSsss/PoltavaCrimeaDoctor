@@ -5,7 +5,5 @@ include ':common:prefs'
 
 include ':network'
 
-include ':features:shared:resultcodes'
-
 include ':app'
 rootProject.name = "DoctorScaner"

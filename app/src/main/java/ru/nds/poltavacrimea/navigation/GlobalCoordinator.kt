@@ -8,6 +8,7 @@ import ru.nds.cabinet.info.CabinetInfoFragment
 import ru.nds.planfix.coordinator.SetUpCoordinator
 import ru.nds.poltavacrimea.R
 import ru.nds.poltavacrimea.ui.MainCoordinator
+import ru.nds.shared.scanner.navigation.dto.ScannerDto
 
 class GlobalCoordinator : SetUpCoordinator,
     ru.nds.planfix.scaner.ScannerCoordinator,
@@ -82,13 +83,13 @@ class GlobalCoordinator : SetUpCoordinator,
         }
     }
 
-    override fun openScanner() {
+    override fun openScanner(scannerDto: ScannerDto) {
         commitOnActiveFm {
             it.beginTransaction()
                 .addToBackStack("openScanner")
                 .replace(
                     R.id.container,
-                    ru.nds.planfix.scaner.ScannerFragment.newInstance(),
+                    ru.nds.planfix.scaner.ScannerFragment.newInstance(scannerDto),
                     ru.nds.planfix.scaner.ScannerFragment.TAG
                 )
                 .commit()
