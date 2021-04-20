@@ -11,11 +11,11 @@ import ru.nds.planfix.resultcodes.CODE_SCANNED_RESULT
 import ru.nds.planfix.scan.appResources.AppResources
 
 class CabinetInfoViewModelImpl(
+    appResources: AppResources,
+    notificationsManager: NotificationsManager,
     private val cabinetInfoCoordinator: CabinetInfoCoordinator,
-    private val notificationsManager: NotificationsManager,
     private val gson: Gson,
-    private val appResources: AppResources,
-) : BaseViewModelImpl(), CabinetInfoViewModel {
+) : BaseViewModelImpl(appResources, notificationsManager), CabinetInfoViewModel {
     override val cabinetInfo: MutableLiveData<CabinetData> = MutableLiveData()
 
     private val cabinetSchedulers: MutableList<CabinetScheduleItem> = generateMockCabinetSchedule()
@@ -31,7 +31,7 @@ class CabinetInfoViewModelImpl(
     }
 
     private fun onScanCabinetClick() {
-        requests.add(
+        disposables.add(
             cabinetInfoCoordinator.addResultListener<String>(CODE_SCANNED_RESULT)
                 .subscribe(::onCabinetScanned)
         )
@@ -63,7 +63,7 @@ class CabinetInfoViewModelImpl(
     }
 
     override fun onVisitedClick(scheduleItem: CabinetScheduleItem) {
-        requests.add(
+        disposables.add(
             cabinetInfoCoordinator.addResultListener<String>(CODE_SCANNED_RESULT)
                 .subscribe { scannedName ->
                     val clientName = try {

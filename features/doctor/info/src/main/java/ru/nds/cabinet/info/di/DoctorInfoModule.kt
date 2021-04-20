@@ -7,7 +7,8 @@ import ru.nds.cabinet.info.DoctorInfoViewModelImpl
 val doctorInfoModule = module {
     viewModel {
         DoctorInfoViewModelImpl(
-
+            appResources = get(),
+            notificationsManager = get()
         )
     }
 }

@@ -9,14 +9,12 @@ import ru.nds.models.CabinetScheduleItem
 import ru.nds.planfix.base.BaseFragment
 import ru.nds.planfix.binding.viewBinding
 
-class CabinetInfoFragment : BaseFragment<CabinetInfoViewModel>(R.layout.frag_cabinet_info) {
+class CabinetInfoFragment : BaseFragment<CabinetInfoViewModel, CabinetInfoViewModelImpl>(R.layout.frag_cabinet_info, CabinetInfoViewModelImpl::class) {
 
     companion object {
         const val TAG = "CabinetInfoFragment"
         fun newInstance() = CabinetInfoFragment()
     }
-
-    override val viewModel: CabinetInfoViewModel by viewModel<CabinetInfoViewModelImpl>()
 
     private val binding: FragCabinetInfoBinding by viewBinding()
 

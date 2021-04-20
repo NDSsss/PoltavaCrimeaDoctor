@@ -1,17 +1,10 @@
 include ':features:cabinet:info'
 include ':features:shared:models'
 include ':features:doctor:info'
-include ':common:base'
-include ':common:design'
-include ':common:resources'
-include ':common:notifications'
-include ':common:coordinator'
 include ':common:prefs'
-include ':common:binding'
 
 include ':network'
 
-include ':features:scaner'
 include ':features:shared:resultcodes'
 
 include ':app'

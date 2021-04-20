@@ -45,17 +45,20 @@ android {
 
 dependencies {
 
-    implementation project(path: ':common:base')
-    implementation project(path: ':common:design')
-    implementation project(path: ':common:resources')
-    implementation project(path: ':common:notifications')
-    implementation project(path: ':common:prefs')
-    implementation project(path: ':common:coordinator')
-    implementation project(path: ':common:binding')
+
+    implementation "ru.nds.android:shared-base:0.0.1"
+    implementation "ru.nds.android:shared-notifications:0.0.1"
+    implementation "ru.nds.android:shared-resources:0.0.1"
+    implementation "ru.nds.android:shared-coordinator:0.0.1"
+    implementation "ru.nds.android:shared-binding:0.0.1"
+    implementation "ru.nds.android:shared-design:0.0.1"
+
+    implementation "ru.nds.android:features-scaner:0.0.1"
 
     implementation project(path: ':network')
 
-    implementation project(path: ':features:scaner')
+    implementation project(path: ':common:prefs')
+
     implementation project(path: ':features:doctor:info')
     implementation project(path: ':features:cabinet:info')
     implementation project(path: ':features:shared:models')

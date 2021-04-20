@@ -8,7 +8,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.nds.planfix.network.BarcodeParseApi
 
 val networkModule = module {
     factory {
@@ -26,15 +25,11 @@ val networkModule = module {
                     })
                     .build()
             )
-            .baseUrl("https://barcode-list.ru/")
+            .baseUrl("http://test.fameresort.ru/")
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(
                 GsonConverterFactory.create(gson)
             )
             .build()
-    }
-    factory {
-        val retrofit: Retrofit = get()
-        retrofit.create(BarcodeParseApi::class.java)
     }
 }
