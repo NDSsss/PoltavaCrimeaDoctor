@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_terminal_radius">32dp</dimen>
+    <dimen name="border_outer_margin_horizontal">40dp</dimen>
+    <dimen name="border_outer_margin_top">74dp</dimen>
+    <dimen name="border_inner_margin_horizontal">32dp</dimen>
+    <dimen name="border_inner_margin_top">24dp</dimen>
+</resources>

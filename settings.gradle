@@ -1,3 +1,4 @@
+include ':terminal'
 include ':features:cabinet:info'
 include ':features:shared:models'
 include ':features:doctor:info'

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main_screen"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/border_outer_margin_top"
+        android:layout_marginEnd="@dimen/border_outer_margin_horizontal"
+        android:background="@drawable/bg_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/border_inner_margin_top"
+            android:layout_marginEnd="@dimen/border_inner_margin_horizontal"
+            android:text="13:40"
+            android:textAppearance="@style/TerminalTextAppearance.H1.Bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTemperatureAirName"
+            android:layout_width="wrap_content"
+            android:layout_height="26dp"
+            android:layout_marginStart="@dimen/border_inner_margin_horizontal"
+            android:layout_marginEnd="@dimen/border_inner_margin_horizontal"
+            android:text="Температура воздуха"
+            android:textAppearance="@style/TerminalTextAppearance.H4"
+            app:layout_constraintBottom_toBottomOf="@id/tvTemperatureAir"
+            app:layout_constraintEnd_toStartOf="@id/tvTime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTemperatureAir"
+            app:layout_goneMarginEnd="@dimen/border_inner_margin_horizontal" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTemperatureAir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="@dimen/border_inner_margin_horizontal"
+            android:text="+35°"
+            android:textAppearance="@style/TerminalTextAppearance.H2.Bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTime" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTemperatureWaterName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/border_inner_margin_horizontal"
+            android:layout_marginEnd="@dimen/border_inner_margin_horizontal"
+            android:text="Температура воды"
+            android:textAppearance="@style/TerminalTextAppearance.H4"
+            app:layout_constraintBottom_toBottomOf="@id/tvTemperatureWater"
+            app:layout_constraintEnd_toStartOf="@id/tvTime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTemperatureWater"
+            app:layout_goneMarginEnd="@dimen/border_inner_margin_horizontal" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTemperatureWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/border_inner_margin_horizontal"
+            android:layout_marginBottom="24dp"
+            android:text="+19°"
+            android:textAppearance="@style/TerminalTextAppearance.H2.Bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTemperatureAir" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/border_inner_margin_horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/tvTime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTime"
+            app:srcCompat="@drawable/ic_sun" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
